@@ -31,6 +31,9 @@ INSERT INTO posts (url, content, user_id )
 VALUES ('https://g1.globo.com/mundo/ucrania-russia/noticia/2023/01/08/russia-retoma-ofensivas-na-ucrania-apos-36-horas-de-cessar-fogo.ghtml',
 'testando Russia', 5);
 
+INSERT INTO likes (user_id, post_id)
+VALUES (5, 2);
+
 SELECT
     users.username,
     posts.id AS post_id,
@@ -42,3 +45,22 @@ ON posts.user_id = users.id
 ORDER BY post_id DESC
 LIMIT 2;
 
+SELECT
+      users.username,
+      posts.id AS post_id,
+      posts.content
+FROM posts
+JOIN users
+ON posts.user_id = users.id
+WHERE posts.user_id = 5
+GROUP BY users.username, posts.id
+ORDER BY post_id DESC;
+
+
+SELECT
+    id AS post_id,
+    content,
+    url
+FROM posts
+WHERE posts.user_id = 5
+GROUP BY posts.id;
