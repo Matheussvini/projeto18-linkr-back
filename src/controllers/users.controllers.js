@@ -4,6 +4,22 @@ import { connnectionDB } from "../database/db.js";
 import dotenv from "dotenv";
 dotenv.config();
 
+export async function createUser(req, res) {
+  const { email, password, username, pic_url } = res.locals.user;
+
+  try {
+    const passwordHash = bcrypt.hashSync(password, 10);
+
+    await connnectionDB.query(
+      "INSERT INTO users (email, password, username, pic_url) VALUES ($1,$2,$3,$4)",
+      [email, passwordHash, username, pic_url]
+    );
+    res.status(201).send("Usuário cadastrado com sucesso!");
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+}
+
 export async function login(req, res) {
     try {
       const { email, password } = res.locals.user;
