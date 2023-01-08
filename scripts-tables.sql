@@ -26,3 +26,19 @@ CREATE TABLE likes(
 INSERT INTO users (username, email, password, pic_url)
 VALUES ('juao', 'juaopaulo@gmail.com', '123456', 
 'https://www.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg');
+
+INSERT INTO posts (url, content, user_id )
+VALUES ('https://g1.globo.com/mundo/ucrania-russia/noticia/2023/01/08/russia-retoma-ofensivas-na-ucrania-apos-36-horas-de-cessar-fogo.ghtml',
+'testando Russia', 5);
+
+SELECT
+    users.username,
+    posts.id AS post_id,
+    posts.content,
+    posts.url
+FROM posts
+JOIN users
+ON posts.user_id = users.id
+ORDER BY post_id DESC
+LIMIT 2;
+
