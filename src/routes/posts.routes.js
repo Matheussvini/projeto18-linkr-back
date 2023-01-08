@@ -9,7 +9,7 @@ router.use(authValidation);
 
 router.get("/posts", findAll);
 router.get("/posts/user/:id", findByUserId);
-router.post("/urls/shorten", validShemaPost, createPost);
+router.post("/posts", validShemaPost, createPost);
 // router.delete("/urls/:id", validShemaDelete, deletePost);
 
 export default router;
