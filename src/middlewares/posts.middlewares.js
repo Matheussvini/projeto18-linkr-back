@@ -1,4 +1,4 @@
-import { postSchema } from "../models/posts";
+import { postSchema } from "../models/posts.js";
 
 export async function validShemaPost(req, res, next) {
   const { error } = postSchema.validate(req.body);
